@@ -5,48 +5,13 @@ import {
   DisclosurePanel,
   Menu,
   MenuButton,
-  MenuItem,
   MenuItems
 } from '@headlessui/vue'
 import { ChevronDownIcon, FunnelIcon } from '@heroicons/vue/20/solid'
-import { reactive, ref } from 'vue'
+import { inject } from 'vue'
+import { MyFilters } from '../../interface/shop/filtersType'
 
-const filters = reactive({
-  price: [
-    { id: 0, value: '0', label: '$0 - $25', checked: false },
-    { id: 1, value: '25', label: '$25 - $50', checked: false },
-    { id: 2, value: '50', label: '$50 - $75', checked: false },
-    { id: 3, value: '75', label: '$75+', checked: false }
-  ],
-  color: [
-    { id: 0, value: 'white', label: 'White', checked: false },
-    { id: 1, value: 'beige', label: 'Beige', checked: false },
-    { id: 2, value: 'blue', label: 'Blue', checked: true },
-    { id: 3, value: 'brown', label: 'Brown', checked: false },
-    { id: 4, value: 'green', label: 'Green', checked: false },
-    { id: 5, value: 'purple', label: 'Purple', checked: false }
-  ],
-  size: [
-    { id: 0, value: 'xs', label: 'XS', checked: false },
-    { id: 1, value: 's', label: 'S', checked: true },
-    { id: 2, value: 'm', label: 'M', checked: false },
-    { id: 3, value: 'l', label: 'L', checked: false },
-    { id: 4, value: 'xl', label: 'XL', checked: false },
-    { id: 5, value: '2xl', label: '2XL', checked: false }
-  ],
-  category: [
-    { value: 'all-new-arrivals', label: 'All New Arrivals', checked: false },
-    { value: 'tees', label: 'Tees', checked: false },
-    { value: 'objects', label: 'Objects', checked: false },
-    { value: 'sweatshirts', label: 'Sweatshirts', checked: false },
-    { value: 'pants-and-shorts', label: 'Pants & Shorts', checked: false }
-  ]
-})
-const sortOptions = ref([
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false }
-])
+const filters = inject('filters') as MyFilters
 </script>
 <template>
   <div class="bg-white">
@@ -88,7 +53,6 @@ const sortOptions = ref([
               <div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                 <div
                   v-for="(option, optionIdx) in filters.price"
-                  :key="option.value"
                   class="flex items-center text-base sm:text-sm"
                 >
                   <input
@@ -99,7 +63,7 @@ const sortOptions = ref([
                     class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     v-model="option.checked"
                   />
- 
+
                   <label
                     :for="`price-${optionIdx}`"
                     class="ml-3 min-w-0 flex-1 text-gray-600"
@@ -113,7 +77,6 @@ const sortOptions = ref([
               <div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                 <div
                   v-for="(option, optionIdx) in filters.color"
-                  :key="option.value"
                   class="flex items-center text-base sm:text-sm"
                 >
                   <input
@@ -122,7 +85,7 @@ const sortOptions = ref([
                     :value="option.value"
                     type="checkbox"
                     class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    :checked="option.checked"
+                    v-model="option.checked"
                   />
                   <label
                     :for="`color-${optionIdx}`"
@@ -141,7 +104,6 @@ const sortOptions = ref([
               <div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                 <div
                   v-for="(option, optionIdx) in filters.size"
-                  :key="option.value"
                   class="flex items-center text-base sm:text-sm"
                 >
                   <input
@@ -150,7 +112,7 @@ const sortOptions = ref([
                     :value="option.value"
                     type="checkbox"
                     class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    :checked="option.checked"
+                    v-model="option.checked"
                   />
                   <label
                     :for="`size-${optionIdx}`"
@@ -165,7 +127,6 @@ const sortOptions = ref([
               <div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                 <div
                   v-for="(option, optionIdx) in filters.category"
-                  :key="option.value"
                   class="flex items-center text-base sm:text-sm"
                 >
                   <input
@@ -174,7 +135,7 @@ const sortOptions = ref([
                     :value="option.value"
                     type="checkbox"
                     class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    :checked="option.checked"
+                    v-model="option.checked"
                   />
                   <label
                     :for="`category-${optionIdx}`"
@@ -213,25 +174,6 @@ const sortOptions = ref([
               <MenuItems
                 class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
-                <div class="py-1">
-                  <MenuItem
-                    v-for="option in sortOptions"
-                    :key="option.name"
-                    v-slot="{ active }"
-                  >
-                    <a
-                      :href="option.href"
-                      :class="[
-                        option.current
-                          ? 'font-medium text-gray-900'
-                          : 'text-gray-500',
-                        active ? 'bg-gray-100' : '',
-                        'block px-4 py-2 text-sm'
-                      ]"
-                      >{{ option.name }}</a
-                    >
-                  </MenuItem>
-                </div>
               </MenuItems>
             </transition>
           </Menu>
