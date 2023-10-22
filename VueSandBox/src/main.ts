@@ -7,6 +7,7 @@ import MyShop from './components/shop/MyShop.vue'
 import MyCustomDirectiveVue from './components/MyCustomDirective.vue'
 import MyHook from './components/MyHook.vue'
 import NotFound from './components/NotFound.vue'
+import translator from './plugins/translator'
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHistory(),
   routes: [
@@ -60,4 +61,17 @@ app.directive('font-size', {
     el.style.fontSize = binding.value + 'px'
   }
 })
-app.use(router).mount('#app')
+
+app
+  .use(router)
+  .use(translator, {
+    en: {
+      shop: 'Boutique',
+      home: 'Acceuil'
+    },
+    fr: {
+      acceuil: 'Home',
+      boutique: 'Shop'
+    }
+  })
+  .mount('#app')

@@ -7,6 +7,7 @@ import sweatgImage from '../../assets/shop/sweatg.png'
 import hatgImage from '../../assets/shop/hatg.png'
 import baggImage from '../../assets/shop/bagg.png'
 import pantsgImage from '../../assets/shop/pantg.png'
+
 import { MyProducts } from '../../interface/shop/productsType'
 import { MyFilters } from '../../interface/shop/filtersType'
 export const useProducts = () => {

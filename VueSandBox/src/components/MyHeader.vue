@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Dialog, DialogPanel } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { useTranslate } from '../composables/useTranslate'
+
+const { $translate } = useTranslate()
+const navigation = [
+  { name: $translate('fr.acceuil'), href: '/' },
+  { name: $translate('fr.boutique'), href: '/shop' },
+  { name: 'MyHook', href: '/myhook' },
+  { name: 'Company', href: '/notFound' }
+]
+
+const mobileMenuOpen = ref(false)
+</script>
+
 <template>
   <header class="bg-white">
     <nav
@@ -7,7 +24,7 @@
       <div class="flex lg:flex-1">
         <a href="#" class="-m-1.5 p-1.5">
           <router-link to="/vForWith"
-            ><span class="sr-only">Shop</span></router-link
+            ><span class="sr-only"> Shop</span></router-link
           >
           <img class="h-8 w-auto" src="../assets/purplelogo.png" alt="" />
         </a>
@@ -95,18 +112,3 @@
     </Dialog>
   </header>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { Dialog, DialogPanel } from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Shop', href: '/shop' },
-  { name: 'MyHook', href: '/myhook' },
-  { name: 'Company', href: '/notFound' }
-]
-
-const mobileMenuOpen = ref(false)
-</script>

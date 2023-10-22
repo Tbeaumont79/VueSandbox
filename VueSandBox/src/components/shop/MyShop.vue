@@ -5,6 +5,7 @@ import { provide, computed } from 'vue'
 import { useFilters } from '../../composables/shop/useFilters'
 import { useProducts } from '../../composables/shop/useProducts'
 import { MyFilters } from '../../interface/shop/filtersType'
+
 const { filters } = useFilters()
 const { products, filterProducts } = useProducts()
 
