@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import MyFormular from './components/MyFormular.vue'
-import Computed from './components/Computed.vue'
+import MyHeader from './components/MyHeader.vue'
 </script>
 
 <template>
-  <div class="w-full p-16 bg-gray-800 flex justify-center">
-    <MyFormular />
-    <Computed />
+  <MyHeader />
+
+  <div class="w-full h-screen text-gray-800  ">
+    <router-view></router-view>
   </div>
 </template>
 
