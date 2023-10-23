@@ -2,11 +2,9 @@
 import MyFiltersComp from './MyFiltersComp.vue'
 import MyProductsComp from './MyProductsComp.vue'
 import { provide, computed } from 'vue'
-import { useFilters } from '../../composables/shop/useFilters'
 import { useProducts } from '../../composables/shop/useProducts'
 import { MyFilters } from '../../interface/shop/filtersType'
-
-const { filters } = useFilters()
+import { filters } from '../../Databases/filters'
 const { products, filterProducts } = useProducts()
 
 const filteredProducts = computed(() => {

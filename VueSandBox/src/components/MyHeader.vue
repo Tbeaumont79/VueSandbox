@@ -9,6 +9,7 @@ const navigation = [
   { name: $translate('fr.acceuil'), href: '/' },
   { name: $translate('fr.boutique'), href: '/shop' },
   { name: 'MyHook', href: '/myhook' },
+  { name: 'MyModal', href: '/myModal' },
   { name: 'Company', href: '/notFound' }
 ]
 

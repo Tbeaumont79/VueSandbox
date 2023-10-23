@@ -4,8 +4,9 @@ import App from './App.vue'
 import * as VueRouter from 'vue-router'
 import MyFormularVue from './components/MyFormular.vue'
 import MyShop from './components/shop/MyShop.vue'
-import MyCustomDirectiveVue from './components/MyCustomDirective.vue'
+import Home from './components/Home.vue'
 import MyHook from './components/MyHook.vue'
+import MyModal from './components/modalImplementation/MyModal.vue'
 import NotFound from './components/NotFound.vue'
 import translator from './plugins/translator'
 const router = VueRouter.createRouter({
@@ -13,8 +14,8 @@ const router = VueRouter.createRouter({
   routes: [
     {
       path: '/',
-      name: 'MyCustomDirective',
-      component: MyCustomDirectiveVue
+      name: 'Home',
+      component: Home
     },
     {
       path: '/shop',
@@ -30,6 +31,11 @@ const router = VueRouter.createRouter({
       path: '/myhook',
       name: 'MyHook',
       component: MyHook
+    },
+    {
+      path: '/myModal',
+      name: 'MyModal',
+      component: MyModal
     },
     {
       path: '/:catchAll(.*)',
